@@ -2,6 +2,7 @@ class ProjectController < ApplicationController
   before_filter :set_project
 
   def index
+    response.headers.delete("X-Frame-Options")
   end
 
   def destroy
