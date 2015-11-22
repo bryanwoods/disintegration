@@ -1,3 +1,28 @@
 #body
-  <h4>Disintegrations</h4>
+  %pre
+    %em
+      %strong Author's note:
+
+      I've recently become fascinated by the idea of creating art that destroys
+      itself when consumed. Digital albums that remove themselves from their
+      web servers after being downloaded once, computer programs that slowly
+      corrupt themselves, etc.
+
+      This is the first project I've completed with this goal. These poems,
+      which are meditations on disintegration, destory themselves one
+      character at a time every time they are read online.
+
+      I have deleted the only copy of these poems in order to allow you
+      to truly destroy them.
+
+  %h4 Disintegrations
   = @project.body.gsub("\n", "<br>").html_safe
+  %br
+    &nbsp;
+  %br
+    &nbsp;
+  %p
+    = link_to "Bryan Woods", "http://twitter.com/bryanwoods"
+    is a computer programmer from Brooklyn, New York who is slowly
+    %br
+    working on a collection of personal essays.

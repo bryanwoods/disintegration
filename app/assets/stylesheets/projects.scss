@@ -7,6 +7,28 @@ body {
   font-size: 16px;
 }
 
+.entry-content {
+  &.before {
+    pre {
+      overflow: auto;
+      white-space: pre-wrap;
+      tab-size: 4;
+      padding: 20px;
+      padding: 2rem;
+      margin-bottom: 20px;
+      margin-bottom: 2rem;
+    }
+
+    em {
+      font-style: italic;
+    }
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}
+
 h4 {
   font-family: Montserrat, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 25.2px;
@@ -14,4 +36,17 @@ h4 {
   height: 38px;
   text-transform: uppercase;
   vertical-align: baseline;
+}
+
+a {
+  color: #ed1b24;
+  text-decoration: none;
+  -moz-transition: all 150ms ease-in-out;
+  -o-transition: all 150ms ease-in-out;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+a:hover {
+  color: #000;
 }
