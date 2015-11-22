@@ -2,12 +2,12 @@
 <html>
 <head>
   <title>Disintegration</title>
+  <link href='https://fonts.googleapis.com/css?family=Karma' rel='stylesheet' type='text/css'>
+  <%= stylesheet_link_tag 'application', cache: true %>
   <%= javascript_include_tag 'application', cache: true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <%= yield %>
 </body>
 </html>
