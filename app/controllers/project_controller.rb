@@ -11,10 +11,11 @@ class ProjectController < ApplicationController
 
     respond_to do |format|
       format.png do
-        random_character = body.chars.reject do
-          |char| [" ", "\n"].include?(char)
+        random_character = body.chars.reject do |char|
+          [" ", "\n"].include?(char)
         end.sample
 
+        return render_png unless random_character
         index = body.chars.find_index(random_character) or return render_png
 
         write_image
