@@ -7,26 +7,23 @@ class ProjectController < ApplicationController
   end
 
   def poems
+    body = @project.body
+
     respond_to do |format|
       format.png do
-        body = @project.body
-
         random_character = body.chars.reject do
           |char| [" ", "\n"].include?(char)
         end.sample
 
-        index = body.chars.find_index(random_character) or
-          return render :index
-
-        @project.update_attributes(body: body.tap { |_body| _body[index] = " " })
+        index = body.chars.find_index(random_character) or return render_png
 
         write_image
 
-        send_file(
-          'public/images/poems.png',
-          type: 'image/png',
-          disposition: 'inline'
+        @project.update_attributes(
+          body: body.tap { |_body| _body[index] = " " }
         )
+
+        render_png
       end
     end
   end
@@ -53,5 +50,13 @@ class ProjectController < ApplicationController
     gc.draw(canvas)
 
     canvas.write("#{Rails.root}/public/images/poems.png")
+  end
+
+  def render_png
+    send_file(
+      'public/images/poems.png',
+      type: 'image/png',
+      disposition: 'inline'
+    )
   end
 end
