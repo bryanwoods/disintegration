@@ -1,28 +1,10 @@
-== README
+This is a Ruby on Rails application I built in support of "Disintegrations", published on December 3, 2015 on Queen Mob's Tea House
+http://queenmobs.com/2015/12/poem-bryan-woods/
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Initially the poems were delivered as a code snippet of HTML and JavaScript, which were styled to match Queen Mob's look and feel and were intended to be inserted into the content area in an iframe. This is what is rendered by ProjectsController#index.
 
-Things you may want to cover:
+We had some difficulty getting this solution to work (their CMS was configured to disallow inserting code for security reasons), so I thought of a hack: the CMS might block code snippets, but nobody's preventing me from inserting images!
 
-* Ruby version
+So I wrote  ProjectsController#poems, which reads the text of the poems out of the database and draws them to a PNG image before deleting another character. This allowed the project to exist within an <img> tag.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+A Clojure version exists as well, if you prefer a CLI interface and provide some poems of your own in a file called "disintegration.txt" https://gist.github.com/bryanwoods/d09c38ea0585c0526c37
