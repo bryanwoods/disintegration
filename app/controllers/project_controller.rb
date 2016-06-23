@@ -1,22 +1,11 @@
 class ProjectController < ApplicationController
   attr_reader :project, :body, :index
-  before_filter :delete_frame_options_header
+  before_filter :set_project_body, :delete_frame_options_header
 
   def poems
-    @project = Project.where(publication: nil).last
-    @body = @project.body
     random_character.present? or return render_png
     write_image
     delete_character(body, random_character)
-    render_png
-  end
-
-  def diagram
-    @project = Project.where(publication: "diagram").last
-    @body = @project.body
-    random_character.present? or return render_png
-    write_image
-    delete_character(body, random_character) if Time.now.to_i % 4 == 0
     render_png
   end
 
@@ -27,6 +16,11 @@ class ProjectController < ApplicationController
   end
 
   private
+
+  def set_project_body
+    @project ||= Project.last
+    @body = @project.body
+  end
 
   def random_character
     body.chars.find_index(random_character)
