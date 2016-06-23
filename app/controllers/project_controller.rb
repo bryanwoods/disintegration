@@ -18,7 +18,7 @@ class ProjectController < ApplicationController
   private
 
   def set_project_body
-    @project ||= Project.last
+    @project ||= Project.where(publication: nil).last
     @body = @project.body
   end
 
