@@ -6,18 +6,18 @@ class ProjectController < ApplicationController
     @project = Project.where(publication: nil).last
     @body = @project.body
     random_character.present? or return render_png
-    write_image
+    write_queen_mobs_image
     delete_character(body, random_character)
-    render_png
+    render_queen_mobs_png
   end
 
   def diagram
     @project = Project.where(publication: "diagram").last
     @body = @project.body
     random_character.present? or return render_png
-    write_image
-    delete_character(body, random_character) if Time.now.to_i % 4 == 0
-    render_png
+    write_diagram_image
+    delete_character(body, random_character) if Time.now.to_i % 3 == 0
+    render_diagram_png
   end
 
   def destroy
@@ -44,7 +44,7 @@ class ProjectController < ApplicationController
     project.update_attributes(body: body.tap { |_body| _body[index] = " " })
   end
 
-  def write_image
+  def write_queen_mobs_image
     canvas = Magick::Image.new(500, 1700) do |c|
       c.background_color = "Transparent"
     end
@@ -58,11 +58,33 @@ class ProjectController < ApplicationController
     canvas.write("#{Rails.root}/#{image_path}")
   end
 
-  def render_png
+  def write_diagram_image
+    canvas = Magick::Image.new(600, 800) do |c|
+      c.background_color = "Transparent"
+    end
+
+    gc = Magick::Draw.new
+
+    gc.pointsize(15)
+    gc.text(50, 50, body)
+    gc.draw(canvas)
+
+    canvas.write("#{Rails.root}/#{diagram_image_path}")
+  end
+
+  def render_queen_mobs_png
     send_file(image_path, type: 'image/png', disposition: 'inline')
+  end
+
+  def render_diagram_png
+    send_file(diagram_image_path, type: 'image/png', disposition: 'inline')
   end
 
   def image_path
     "public/images/poems.png"
+  end
+
+  def diagram_image_path
+    "public/images/diagram.png"
   end
 end
