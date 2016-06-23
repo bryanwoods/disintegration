@@ -36,7 +36,7 @@ class DiagramController < ApplicationController
 
     gc = Magick::Draw.new
 
-    gc.pointsize(18)
+    gc.pointsize(24)
     gc.text(50, 50, body)
     gc.draw(canvas)
 
