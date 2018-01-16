@@ -30,14 +30,15 @@ class UnpublishableController < ApplicationController
   end
 
   def write_image
-    canvas = Magick::Image.new(200, 920) do |c|
+    canvas = Magick::Image.new(200, 750) do |c|
       c.background_color = "Transparent"
     end
 
     gc = Magick::Draw.new
+    gc.font_family = "Times New Roman"
 
-    gc.pointsize(18)
-    gc.text(50, 50, body)
+    gc.pointsize(16)
+    gc.text(20, 30, body)
     gc.draw(canvas)
 
     canvas.write("#{Rails.root}/#{image_path}")
