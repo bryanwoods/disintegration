@@ -166,7 +166,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.0)
   jquery-rails
-  pg (= 1.0.0)
+  pg
   puma
   rails (= 4.2.10)
   rails_12factor
